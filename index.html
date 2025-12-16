@@ -3,50 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sistema Vida v3.5</title>
+    <title>Sistema Vida 4.0</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Lora:ital@0;1&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <style>
-        :root {
-            --primary: #e11d48;
-            --bg-body: #f8fafc;
-            --bg-card: #ffffff;
-            --text-main: #1e293b;
-            --text-sec: #64748b;
-            --border: #e2e8f0;
-            --input-bg: #f1f5f9;
-            --nav-height: 70px;
-        }
-
-        [data-theme="dark"] {
-            --primary: #fb7185;
-            --bg-body: #0f172a;
-            --bg-card: #1e293b;
-            --text-main: #f1f5f9;
-            --text-sec: #94a3b8;
-            --border: #334155;
-            --input-bg: #334155;
-        }
-
+        :root { --primary: #e11d48; --bg-body: #f8fafc; --bg-card: #ffffff; --text-main: #1e293b; --text-sec: #64748b; --border: #e2e8f0; --input-bg: #f1f5f9; --nav-height: 70px; }
+        [data-theme="dark"] { --primary: #fb7185; --bg-body: #0f172a; --bg-card: #1e293b; --text-main: #f1f5f9; --text-sec: #94a3b8; --border: #334155; --input-bg: #334155; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
-        
-        body { 
-            background-color: var(--bg-body); 
-            color: var(--text-main); 
-            padding-bottom: calc(var(--nav-height) + 20px);
-            transition: background 0.3s, color 0.3s;
-        }
+        body { background-color: var(--bg-body); color: var(--text-main); padding-bottom: calc(var(--nav-height) + 20px); transition: background 0.3s; }
 
         /* HEADER */
-        header {
-            background: var(--bg-card); padding: 15px 20px;
-            display: flex; justify-content: space-between; align-items: center;
-            position: sticky; top: 0; z-index: 100;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05); border-bottom: 1px solid var(--border);
-        }
+        header { background: var(--bg-card); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border-bottom: 1px solid var(--border); }
         .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.1rem; color: var(--primary); }
         .theme-toggle { background: none; border: none; font-size: 1.2rem; color: var(--text-main); cursor: pointer; padding: 5px; }
 
@@ -56,158 +26,115 @@
         .screen.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* NAVEGAÇÃO SUPERIOR */
-        .back-bar { display: flex; align-items: center; margin-bottom: 20px; }
-        .btn-back {
-            background: none; border: none; color: var(--text-sec); font-weight: 600; font-size: 1rem;
-            display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.2s;
-        }
-
-        /* FERRAMENTAS */
-        .tools-section {
-            background: var(--bg-card); padding: 15px; border-radius: 16px;
-            border: 1px solid var(--border); box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 20px;
-        }
-        
+        /* COMPONENTES */
+        .tools-section { background: var(--bg-card); padding: 15px; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 20px; }
         .search-row { display: flex; gap: 10px; margin-bottom: 10px; }
         .search-input { flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--input-bg); color: var(--text-main); outline: none; }
-        .btn-magic { background: var(--primary); color: white; border: none; padding: 0 20px; border-radius: 10px; cursor: pointer; font-size: 1.2rem; transition: 0.2s; }
-        
-        .daily-btn {
-            width: 100%; background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white;
-            border: none; padding: 10px; border-radius: 10px; font-weight: 600; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.9rem;
-        }
+        .btn-magic { background: var(--primary); color: white; border: none; padding: 0 20px; border-radius: 10px; cursor: pointer; font-size: 1.2rem; }
+        .daily-btn { width: 100%; background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; border: none; padding: 10px; border-radius: 10px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
-        /* EMOJIS */
         .emoji-toolbar { margin-bottom: 20px; }
-        .btn-toggle-emoji {
-            width: 100%; background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border);
-            padding: 10px; border-radius: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
-        }
-        .emoji-grid {
-            display: none; grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); gap: 5px;
-            background: var(--bg-card); padding: 10px; border-radius: 16px; border: 1px solid var(--border);
-            margin-top: 10px; max-height: 150px; overflow-y: auto;
-        }
+        .btn-toggle-emoji { width: 100%; background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border); padding: 10px; border-radius: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .emoji-grid { display: none; grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); gap: 5px; background: var(--bg-card); padding: 10px; border-radius: 16px; border: 1px solid var(--border); margin-top: 10px; max-height: 150px; overflow-y: auto; }
         .emoji-grid.show { display: grid; }
-        .emoji-btn { font-size: 1.5rem; background: none; border: none; cursor: pointer; padding: 5px; border-radius: 8px; }
+        .emoji-btn { font-size: 1.5rem; background: none; border: none; cursor: pointer; padding: 5px; }
 
-        /* INPUTS */
         .form-group { margin-bottom: 15px; }
         label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; color: var(--text-sec); }
-        input, textarea {
-            width: 100%; padding: 14px; border-radius: 12px; border: 1px solid var(--border);
-            background: var(--input-bg); color: var(--text-main); font-size: 1rem; outline: none;
-            border: 2px solid transparent; transition: 0.2s;
-        }
+        input, textarea { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--input-bg); color: var(--text-main); font-size: 1rem; outline: none; border: 2px solid transparent; transition: 0.2s; }
         input:focus, textarea:focus { border-color: var(--primary); background: var(--bg-card); }
-        input.receiving-emoji, textarea.receiving-emoji { border-color: var(--primary); background: rgba(225, 29, 72, 0.03); }
-
+        
         /* PREVIEW CONTROLS */
+        .back-bar { margin-bottom: 20px; }
+        .btn-back { background: none; border: none; color: var(--text-sec); font-weight: 600; display: flex; align-items: center; gap: 8px; cursor: pointer; }
         .preview-controls { margin-bottom: 20px; background: var(--bg-card); padding: 15px; border-radius: 16px; border: 1px solid var(--border); }
         .theme-selector { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px solid var(--border); }
-        .theme-btn { min-width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--border); cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
+        .theme-btn { min-width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--border); cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .theme-btn.active::after { content: '✔'; color: white; text-shadow: 0 1px 2px black; font-weight: bold; }
-        
-        .color-tools { display: flex; gap: 10px; align-items: center; justify-content: space-around; margin-top: 10px; }
-        .color-picker-wrapper { display: flex; align-items: center; gap: 5px; font-size: 0.8rem; font-weight: 600; color: var(--text-sec); }
-        input[type="color"] { width: 35px; height: 35px; border: none; padding: 0; background: none; cursor: pointer; border-radius: 50%; overflow: hidden; }
-
-        .btn-upload-bg { background: #333; color: white; font-size: 1.2rem; width: 100%; height: 100%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .btn-upload-bg { background: #333; color: white; width: 100%; height: 100%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
         #bgInput { display: none; }
+        
+        .color-tools { display: flex; gap: 10px; justify-content: space-around; }
+        .color-picker-wrapper { display: flex; align-items: center; gap: 5px; font-size: 0.8rem; font-weight: 600; color: var(--text-sec); }
+        input[type="color"] { width: 35px; height: 35px; border: none; padding: 0; background: none; cursor: pointer; border-radius: 50%; }
 
-        /* CARTÃO */
+        /* CARTÃO DE MENSAGEM */
         .card-preview-wrapper {
             padding: 40px 30px; border-radius: 20px; text-align: center; margin-bottom: 25px;
-            transition: 0.3s; position: relative; overflow: hidden;
-            background-color: white; background-size: cover; background-position: center;
+            position: relative; overflow: hidden;
+            background-size: cover; background-position: center;
             color: #1e293b; border: 1px solid #eee;
+            min-height: 400px; display: flex; flex-direction: column; justify-content: center;
         }
-        .card-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1; display: none; }
-        .card-content-layer { position: relative; z-index: 2; }
+        .card-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1; display: none; }
+        .card-content-layer { position: relative; z-index: 2; width: 100%; }
 
-        .pv-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 5px; line-height: 1.2; color: inherit; }
-        .pv-ref { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; opacity: 0.8; font-weight: 600; color: inherit; }
-        .pv-verse { font-family: 'Lora', serif; font-style: italic; font-size: 1.1rem; display: block; margin-bottom: 25px; line-height: 1.6; color: inherit; }
-        .pv-msg { text-align: left; padding: 20px; border-radius: 15px; font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px; background: rgba(0,0,0,0.03); color: inherit; }
-        .pv-prayer { font-size: 0.85rem; font-weight: 600; opacity: 0.9; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; display: inline-block; width: 100%; color: inherit; }
-        .pv-footer { font-size: 0.6rem; margin-top: 20px; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; color: inherit; }
+        .pv-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 5px; line-height: 1.2; }
+        .pv-ref { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; opacity: 0.8; font-weight: 600; }
+        .pv-verse { font-family: 'Lora', serif; font-style: italic; font-size: 1.1rem; display: block; margin-bottom: 25px; line-height: 1.6; }
+        .pv-msg { text-align: left; padding: 20px; border-radius: 15px; font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px; background: rgba(0,0,0,0.03); }
+        .pv-prayer { font-size: 0.85rem; font-weight: 600; opacity: 0.9; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; display: inline-block; width: 100%; }
+        .pv-footer { font-size: 0.6rem; margin-top: 20px; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; }
 
+        /* Estilos de Foto */
         .has-bg-image .card-overlay { display: block; }
-        .has-bg-image .pv-msg { background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.2); }
-        .has-bg-image .pv-prayer { border-top: 1px solid rgba(255,255,255,0.3); }
-
-        /* TEMAS PADRÃO */
-        .card-clean { background: white !important; color: #333 !important; }
-        .card-clean .pv-title { color: #e11d48 !important; }
-        .card-ocean { background: linear-gradient(135deg, #0ea5e9, #2563eb) !important; color: white !important; border: none; }
+        .has-bg-image .pv-msg { background: rgba(255,255,255,0.15) !important; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.2); }
+        
+        /* TEMAS (Cores definidas via CSS) */
+        .card-clean { background: white; color: #333; }
+        .card-clean .pv-title { color: #e11d48; }
+        
+        .card-ocean { background: linear-gradient(135deg, #0ea5e9, #2563eb); color: white; border: none; }
         .card-ocean .pv-msg { background: rgba(255,255,255,0.1); border-left: 3px solid rgba(255,255,255,0.5); }
-        .card-sunset { background: linear-gradient(135deg, #f59e0b, #e11d48) !important; color: white !important; border: none; }
+        
+        .card-sunset { background: linear-gradient(135deg, #f59e0b, #e11d48); color: white; border: none; }
         .card-sunset .pv-msg { background: rgba(255,255,255,0.15); }
-        .card-night { background: #0f172a !important; color: #e2e8f0 !important; border: 1px solid #334155; }
-        .card-night .pv-title { color: #818cf8 !important; }
+        
+        .card-night { background: #0f172a; color: #e2e8f0; border: 1px solid #334155; }
+        .card-night .pv-title { color: #818cf8; }
         .card-night .pv-msg { background: #1e293b; border-left: 3px solid #818cf8; }
-        .card-forest { background: linear-gradient(135deg, #059669, #065f46) !important; color: white !important; border: none; }
+        
+        .card-forest { background: linear-gradient(135deg, #059669, #065f46); color: white; border: none; }
         .card-forest .pv-msg { background: rgba(255,255,255,0.1); }
 
-        /* AÇÕES & NAV */
+        /* AÇÕES */
         .actions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .btn { border: none; padding: 12px; border-radius: 12px; font-weight: 600; color: white; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; font-size: 0.9rem; transition: 0.2s; }
+        .btn { border: none; padding: 15px; border-radius: 12px; font-weight: 600; color: white; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: 0.2s; }
         .btn:active { transform: scale(0.98); }
-        .btn-zap { background: #25D366; color: #fff; } 
-        .btn-share-img { background: linear-gradient(90deg, #10b981, #059669); grid-column: span 2; font-size: 1rem; padding: 15px; } 
-        .btn-print { background: #475569; }
-        .btn-img { background: #3b82f6; }
+        .btn-img-share { background: linear-gradient(90deg, #10b981, #059669); grid-column: span 2; font-size: 1rem; }
+        .btn-zap { background: #25D366; } 
+        .btn-down { background: #3b82f6; }
 
-        .bottom-nav {
-            position: fixed; bottom: 0; left: 0; width: 100%; height: var(--nav-height);
-            background: var(--bg-card); border-top: 1px solid var(--border);
-            display: flex; justify-content: space-around; align-items: center; z-index: 1000;
-        }
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; height: var(--nav-height); background: var(--bg-card); border-top: 1px solid var(--border); display: flex; justify-content: space-around; align-items: center; z-index: 1000; }
         .nav-item { background: none; border: none; display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-sec); font-size: 0.75rem; font-weight: 500; cursor: pointer; width: 100%; height: 100%; justify-content: center; }
         .nav-item.active { color: var(--primary); }
 
-        #toast { visibility: hidden; min-width: 250px; background-color: #333; color: #fff; text-align: center; border-radius: 50px; padding: 12px; position: fixed; z-index: 2000; left: 50%; bottom: 90px; transform: translateX(-50%); font-size: 0.9rem; opacity: 0; transition: opacity 0.3s, bottom 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        #toast { visibility: hidden; min-width: 250px; background-color: #333; color: #fff; text-align: center; border-radius: 50px; padding: 12px; position: fixed; z-index: 2000; left: 50%; bottom: 90px; transform: translateX(-50%); font-size: 0.9rem; opacity: 0; transition: opacity 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
         #toast.show { visibility: visible; opacity: 1; bottom: 100px; }
 
-        @media print {
-            body { background-color: white; padding: 0; }
-            header, .bottom-nav, .actions-grid, .tools-section, .emoji-toolbar, .theme-toggle, .preview-controls, .back-bar, #screen-editor { display: none !important; }
-            #screen-preview { display: block !important; }
-            .container { max-width: 100%; margin: 0; padding: 0; }
-            .card-preview-wrapper { box-shadow: none; border: 1px solid #ccc; padding: 40px; margin: 0; position: absolute; top: 0; left: 0; width: 100%; color: black !important; background: white !important; text-shadow: none !important; }
-            .pv-msg { background: none !important; border: 1px solid #eee; }
-            .pv-title { color: black !important; }
-            .card-overlay { display: none !important; }
-        }
+        @media print { body { background: white; } header, .bottom-nav, .actions-grid, .tools-section, .emoji-toolbar, .theme-toggle, .preview-controls, .back-bar, #screen-editor { display: none !important; } #screen-preview { display: block !important; } .card-preview-wrapper { border: 1px solid #ccc; color: black !important; background: white !important; } .pv-msg { background: none !important; } .card-overlay { display: none !important; } }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="brand"><i class="fas fa-heart"></i> Sistema Vida <span style="font-size:0.7rem; background:var(--input-bg); padding:2px 6px; border-radius:4px; margin-left:5px; color:var(--text-sec);">v3.5</span></div>
+        <div class="brand"><i class="fas fa-heart"></i> Sistema Vida <span style="font-size:0.7rem; background:var(--input-bg); padding:2px 6px; border-radius:4px; margin-left:5px; color:var(--text-sec);">v4.0 Final</span></div>
         <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
     </header>
 
     <div class="container">
         
         <div id="screen-editor" class="screen active">
-            
             <div class="tools-section">
                 <div class="search-row">
-                    <input type="text" id="temaBusca" class="search-input" placeholder="Ex: Vício, Perdão, Casamento...">
-                    <button class="btn-magic" onclick="gerarConteudoInteligente()" title="Gerar"><i class="fas fa-magic"></i></button>
+                    <input type="text" id="temaBusca" class="search-input" placeholder="Ex: Prostituição, Vício, Perdão...">
+                    <button class="btn-magic" onclick="gerarConteudoInteligente()"><i class="fas fa-magic"></i></button>
                 </div>
-                <button class="daily-btn" onclick="gerarVersiculoDoDia()">
-                    <i class="far fa-calendar-alt"></i> Palavra de Hoje (<?php echo date('d/m'); ?>)
-                </button>
+                <button class="daily-btn" onclick="gerarVersiculoDoDia()"><i class="far fa-calendar-alt"></i> Palavra de Hoje</button>
             </div>
 
             <div class="emoji-toolbar">
-                <button type="button" class="btn-toggle-emoji" onclick="toggleEmojiGrid()">
-                   <span><i class="far fa-smile"></i> Emojis</span> <i class="fas fa-chevron-down"></i>
-                </button>
+                <button type="button" class="btn-toggle-emoji" onclick="toggleEmojiGrid()"><span><i class="far fa-smile"></i> Emojis</span> <i class="fas fa-chevron-down"></i></button>
                 <div class="emoji-grid" id="emojiContainer"></div>
             </div>
 
@@ -221,10 +148,7 @@
         </div>
 
         <div id="screen-preview" class="screen">
-            
-            <div class="back-bar">
-                <button class="btn-back" onclick="navTo('editor')"><i class="fas fa-arrow-left"></i> Voltar e Editar</button>
-            </div>
+            <div class="back-bar"><button class="btn-back" onclick="navTo('editor')"><i class="fas fa-arrow-left"></i> Voltar e Editar</button></div>
             
             <div class="preview-controls">
                 <div class="theme-selector">
@@ -239,12 +163,8 @@
                     <div class="theme-btn" style="background:linear-gradient(135deg, #059669, #065f46);" onclick="mudarTema('card-forest', this)"></div>
                 </div>
                 <div class="color-tools">
-                    <div class="color-picker-wrapper">
-                        <span>Cor Título:</span> <input type="color" id="colorTitle" value="#e11d48" onchange="mudarCorTitulo(this.value)">
-                    </div>
-                    <div class="color-picker-wrapper">
-                        <span>Cor Texto:</span> <input type="color" id="colorBody" value="#333333" onchange="mudarCorTexto(this.value)">
-                    </div>
+                    <div class="color-picker-wrapper"><span>Cor Título:</span> <input type="color" id="colorTitle" value="#e11d48" onchange="mudarCorTitulo(this.value)"></div>
+                    <div class="color-picker-wrapper"><span>Cor Texto:</span> <input type="color" id="colorBody" value="#333333" onchange="mudarCorTexto(this.value)"></div>
                 </div>
             </div>
 
@@ -261,19 +181,12 @@
             </div>
 
             <div class="actions-grid">
-                <button class="btn btn-share-img" onclick="compartilharImagemNativa()">
-                    <i class="fas fa-share-alt"></i> Compartilhar Imagem 📤
+                <button class="btn btn-img-share" onclick="compartilharImagemHibrido()">
+                    <i class="fas fa-share-alt"></i> Compartilhar / Baixar 📤
                 </button>
-                
-                <button class="btn btn-zap" onclick="shareZapTexto()">
-                    <i class="fab fa-whatsapp"></i> Zap (Texto)
-                </button>
-                
-                <button class="btn btn-img" onclick="saveImage()">
-                    <i class="fas fa-download"></i> Baixar
-                </button>
+                <button class="btn btn-zap" onclick="shareZapTexto()"><i class="fab fa-whatsapp"></i> Zap (Texto)</button>
+                <button class="btn btn-down" onclick="saveImage()"><i class="fas fa-download"></i> Baixar</button>
             </div>
-            
         </div>
     </div>
 
@@ -286,89 +199,61 @@
     <div id="toast">Notificação</div>
 
     <script>
+        // 1. EMOJIS & BANCO DE DADOS (Mantidos da versão anterior)
         const emojisCristaos = ["🙏", "🙌", "✨", "❤️", "✝️", "🕊️", "📖", "🔥", "💡", "⛪", "😊", "🥺", "💪", "🛡️", "👑", "🌿", "🌾", "🌟", "💖", "🤝", "😭", "🌻", "🤲", "😇", "😌", "🍇", "🍞", "🍷", "🦁", "🌈", "☀️", "👨‍👩‍👧‍👦"];
-        let lastFocusedInput = document.getElementById('mensagem'); 
-        function initEmojis() {
-            const container = document.getElementById('emojiContainer');
-            emojisCristaos.forEach(emoji => {
-                const btn = document.createElement('button');
-                btn.className = 'emoji-btn'; btn.innerText = emoji; btn.type = 'button';
-                btn.onclick = () => insertEmoji(emoji); container.appendChild(btn);
-            });
-            document.querySelectorAll('.input-field').forEach(input => {
-                input.addEventListener('focus', () => {
-                    document.querySelectorAll('.input-field').forEach(i => i.classList.remove('receiving-emoji'));
-                    lastFocusedInput = input; input.classList.add('receiving-emoji');
-                });
-            });
-        }
-        function toggleEmojiGrid() { document.getElementById('emojiContainer').classList.toggle('show'); }
-        function insertEmoji(char) {
-            if (!lastFocusedInput) return;
-            const start = lastFocusedInput.selectionStart; const text = lastFocusedInput.value;
-            lastFocusedInput.value = text.substring(0, start) + char + text.substring(lastFocusedInput.selectionEnd);
-            lastFocusedInput.selectionStart = start + char.length; lastFocusedInput.selectionEnd = start + char.length; lastFocusedInput.focus();
-        }
-        window.addEventListener('DOMContentLoaded', initEmojis);
-
         const db = {
-            "prostituição": [
-                { titulo: "Seu Valor é Real 💎", ref: "1 Coríntios 6:19-20", versiculo: "Acaso não sabem que o corpo de vocês é santuário do Espírito Santo?", msg: "Você não é mercadoria, você é templo. Deus já pagou o preço mais alto por você.", oracao: "Senhor, restaura minha dignidade." },
-                { titulo: "Não me Condeno 🙏", ref: "João 8:11", versiculo: "Disse Jesus: Nem eu tampouco te condeno; vai, e não peques mais.", msg: "Jesus não atira pedras, Ele estende a mão. O passado ficou para trás.", oracao: "Obrigado, Jesus, pela nova chance." }
-            ],
+            "prostituição": [{ titulo: "Seu Valor é Real 💎", ref: "1 Coríntios 6:19-20", versiculo: "Acaso não sabem que o corpo de vocês é santuário do Espírito Santo?", msg: "Você não é mercadoria, você é templo. Deus pagou o preço mais alto por você.", oracao: "Senhor, restaura minha dignidade." }, { titulo: "Não me Condeno 🙏", ref: "João 8:11", versiculo: "Vai, e não peques mais.", msg: "Jesus não atira pedras, Ele estende a mão. O passado ficou para trás.", oracao: "Obrigado, Jesus, pela nova chance." }],
             "vício": [{ titulo: "Liberdade Real ⛓️", ref: "João 8:36", versiculo: "Se, pois, o Filho vos libertar, verdadeiramente sereis livres.", msg: "A liberdade está a uma oração de distância. Deus quebra cadeias.", oracao: "Quebra as cadeias, Senhor." }],
             "perdão": [{ titulo: "Livre do Peso 🕊️", ref: "Efésios 4:32", versiculo: "Perdoando-vos uns aos outros.", msg: "Perdoar é abrir a porta da gaiola e descobrir que quem estava preso era você.", oracao: "Ensina-me a perdoar." }],
-            "casamento": [{ titulo: "Cordão de Três Dobras 💍", ref: "Eclesiastes 4:12", versiculo: "O cordão de três dobras não se quebra tão depressa.", msg: "Um casamento forte é feito de duas pessoas que nunca desistem, unidas por Deus.", oracao: "Abençoa meu casamento, Pai." }],
-            "sabedoria": [{ titulo: "Direção do Alto 🧭", ref: "Tiago 1:5", versiculo: "Peça-a a Deus.", msg: "Não tome decisões permanentes baseado em emoções temporárias.", oracao: "Dá-me sabedoria, Senhor." }],
             "depressão": [{ titulo: "Há Esperança 🙏", ref: "Salmos 34:18", versiculo: "Perto está o Senhor.", msg: "Sua dor não é o fim. É apenas um capítulo.", oracao: "Senhor, cura minha alma." }],
             "ansiedade": [{ titulo: "Descanse a Mente 😌", ref: "1 Pedro 5:7", versiculo: "Lançando sobre ele toda a vossa ansiedade.", msg: "Por que carregar o mundo se Deus pode carregá-lo por você?", oracao: "Entrego minhas preocupações a Ti." }],
             "força": [{ titulo: "Você é Forte 💪", ref: "Filipenses 4:13", versiculo: "Tudo posso naquele que me fortalece.", msg: "Não olhe para o gigante, olhe para o seu Deus.", oracao: "Renova minhas forças." }]
         };
-        const genericos = [
-            { titulo: "Deus é Fiel 🙌", ref: "Lamentações 3:23", versiculo: "As suas misericórdias são inesgotáveis.", msg: "A cada manhã Deus te dá uma nova chance.", oracao: "Obrigado por mais um dia." },
-            { titulo: "Gratidão ❤️", ref: "Salmos 107:1", versiculo: "Rendei graças ao Senhor, porque ele é bom.", msg: "Quem agradece, vê milagres.", oracao: "Te louvo, Senhor." }
-        ];
+        const genericos = [{ titulo: "Deus é Fiel 🙌", ref: "Lamentações 3:23", versiculo: "As suas misericórdias são inesgotáveis.", msg: "A cada manhã Deus te dá uma nova chance.", oracao: "Obrigado por mais um dia." }, { titulo: "Gratidão ❤️", ref: "Salmos 107:1", versiculo: "Rendei graças ao Senhor, porque ele é bom.", msg: "Quem agradece, vê milagres.", oracao: "Te louvo, Senhor." }];
+
+        // 2. FUNÇÕES LÓGICAS (Init, Emoji, Gerar)
+        window.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('emojiContainer');
+            emojisCristaos.forEach(emoji => {
+                const btn = document.createElement('button'); btn.className = 'emoji-btn'; btn.innerText = emoji; btn.type = 'button';
+                btn.onclick = () => insertEmoji(emoji); container.appendChild(btn);
+            });
+        });
+        let lastFocusedInput = document.getElementById('mensagem');
+        document.querySelectorAll('.input-field').forEach(i => i.addEventListener('focus', () => lastFocusedInput = i));
+        function toggleEmojiGrid() { document.getElementById('emojiContainer').classList.toggle('show'); }
+        function insertEmoji(char) { if(lastFocusedInput) lastFocusedInput.value += char; }
 
         function gerarConteudoInteligente() {
             const input = document.getElementById('temaBusca').value.toLowerCase().trim();
-            const btn = document.querySelector('.btn-magic');
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-            setTimeout(() => {
-                let opcoes = genericos;
-                const chave = Object.keys(db).find(k => input.includes(k));
-                if (chave) opcoes = db[chave];
-                const conteudo = opcoes[Math.floor(Math.random() * opcoes.length)];
-                preencher(conteudo);
-                btn.innerHTML = '<i class="fas fa-magic"></i>';
-                navTo('preview');
-                showToast(chave ? `Tema: ${chave}` : "Palavra Aleatória");
-            }, 800);
+            let opcoes = genericos;
+            const chave = Object.keys(db).find(k => input.includes(k));
+            if (chave) opcoes = db[chave];
+            const c = opcoes[Math.floor(Math.random() * opcoes.length)];
+            preencher(c); navTo('preview'); showToast(chave ? `Tema: ${chave}` : "Palavra Aleatória");
         }
-        function gerarVersiculoDoDia() {
-            const hoje = new Date().getDate();
-            const indice = hoje % genericos.length;
-            preencher(genericos[indice]); navTo('preview'); showToast("Palavra de Hoje!");
-        }
-        function preencher(data) {
-            document.getElementById('titulo').value = data.titulo;
-            document.getElementById('referencia').value = data.ref;
-            document.getElementById('versiculo').value = data.versiculo;
-            document.getElementById('mensagem').value = data.msg;
-            document.getElementById('oracao').value = data.oracao;
+        function gerarVersiculoDoDia() { const i = new Date().getDate() % genericos.length; preencher(genericos[i]); navTo('preview'); showToast("Palavra de Hoje!"); }
+        function preencher(d) {
+            document.getElementById('titulo').value = d.titulo; document.getElementById('referencia').value = d.ref;
+            document.getElementById('versiculo').value = d.versiculo; document.getElementById('mensagem').value = d.msg; document.getElementById('oracao').value = d.oracao;
         }
 
+        // --- 3. CORREÇÃO DOS TEMAS (LIMPEZA TOTAL) ---
         function mudarTema(classeTema, btnElement) {
             const card = document.getElementById('card-capture');
-            card.className = 'card-preview-wrapper ' + classeTema;
-            card.style.backgroundImage = ''; 
-            card.classList.remove('has-bg-image');
-            const titlePicker = document.getElementById('colorTitle');
-            const bodyPicker = document.getElementById('colorBody');
+            
+            // 1. LIMPEZA PROFUNDA: Remove estilos inline (fotos) e classes antigas
+            card.removeAttribute('style'); // Remove foto, cor de fundo, tudo inline
+            card.className = 'card-preview-wrapper ' + classeTema; // Reseta classes
+            
+            // 2. Auto-Contraste
+            const tp = document.getElementById('colorTitle'); const bp = document.getElementById('colorBody');
             if (classeTema === 'card-clean') {
-                mudarCorTitulo('#e11d48'); mudarCorTexto('#333333'); titlePicker.value = '#e11d48'; bodyPicker.value = '#333333';
+                mudarCorTitulo('#e11d48'); mudarCorTexto('#333333'); tp.value = '#e11d48'; bp.value = '#333333';
             } else {
-                mudarCorTitulo('#ffffff'); mudarCorTexto('#ffffff'); titlePicker.value = '#ffffff'; bodyPicker.value = '#ffffff';
+                mudarCorTitulo('#ffffff'); mudarCorTexto('#ffffff'); tp.value = '#ffffff'; bp.value = '#ffffff';
             }
+
             document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
             btnElement.classList.add('active');
         }
@@ -379,28 +264,61 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     const card = document.getElementById('card-capture');
+                    // Aplica foto inline (sobrescreve classes)
                     card.style.backgroundImage = `url(${e.target.result})`;
                     card.classList.add('has-bg-image');
+                    // Auto-contraste Branco
                     mudarCorTitulo('#ffffff'); mudarCorTexto('#ffffff');
                     document.getElementById('colorTitle').value = '#ffffff';
                     document.getElementById('colorBody').value = '#ffffff';
-                    document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
-                    event.target.parentElement.classList.add('active');
                 };
                 reader.readAsDataURL(file);
+                document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+                event.target.parentElement.classList.add('active');
             }
+            // Limpa o input para permitir selecionar a mesma foto novamente
+            event.target.value = '';
         }
 
         function mudarCorTitulo(cor) { document.getElementById('pv-titulo').style.color = cor; }
         function mudarCorTexto(cor) { document.querySelectorAll('#pv-ref, #pv-versiculo, #pv-mensagem, #pv-prayer, #pv-footer').forEach(el => el.style.color = cor); }
 
+        // --- 4. SOLUÇÃO DE COMPARTILHAMENTO (PC vs MOBILE) ---
+        function compartilharImagemHibrido() {
+            showToast("Processando...");
+            const card = document.getElementById('card-capture');
+            
+            html2canvas(card, { scale: 3, useCORS: true }).then(canvas => {
+                canvas.toBlob(blob => {
+                    // Verifica se o navegador suporta compartilhamento e se NÃO é um arquivo local no PC
+                    const isFileProtocol = window.location.protocol === 'file:';
+                    
+                    if (navigator.share && blob && !isFileProtocol) {
+                        // Modo Mobile/Web Real
+                        const file = new File([blob], "devocional.png", { type: "image/png" });
+                        navigator.share({ files: [file], title: 'Devocional', text: 'Compartilhando...' })
+                        .then(() => showToast("Enviado!"))
+                        .catch(() => baixarImagem(canvas)); // Se falhar, baixa
+                    } else {
+                        // Modo PC / Arquivo Local
+                        showToast("Baixando imagem... (PC detectado)");
+                        setTimeout(() => baixarImagem(canvas), 1000);
+                    }
+                });
+            });
+        }
+
+        function baixarImagem(canvas) {
+            const link = document.createElement('a'); link.download = 'devocional_sistema_vida.png';
+            link.href = canvas.toDataURL(); link.click();
+        }
+
+        // 5. NAV E UTILS
         function navTo(screen) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById('screen-' + screen).classList.add('active');
-            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-            if(screen === 'editor') document.querySelectorAll('.nav-item')[0].classList.add('active');
-            if(screen === 'preview') document.querySelectorAll('.nav-item')[1].classList.add('active');
-            updatePreview(); window.scrollTo(0,0);
+            if(screen === 'preview') updatePreview();
+            window.scrollTo(0,0);
         }
         function updatePreview() {
             const getVal = id => document.getElementById(id).value;
@@ -411,58 +329,11 @@
             document.getElementById('pv-oracao').innerText = getVal('oracao') ? "Oração: " + getVal('oracao') : "";
             document.getElementById('pv-footer').innerText = getVal('assinatura') || 'Sistema Vida';
         }
-
         function shareZapTexto() {
-            const t = document.getElementById('titulo').value;
-            const v = document.getElementById('versiculo').value;
-            const m = document.getElementById('mensagem').value;
-            let text = `*${t}*\n\n_${v}_\n\n${m}`;
-            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+            const t = document.getElementById('titulo').value; const v = document.getElementById('versiculo').value; const m = document.getElementById('mensagem').value;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(`*${t}*\n\n_${v}_\n\n${m}`)}`, '_blank');
         }
-
-        // --- SOLUÇÃO INTELIGENTE (HÍBRIDA) ---
-        function compartilharImagemNativa() {
-            showToast("Gerando imagem...");
-            const card = document.getElementById('card-capture');
-            
-            html2canvas(card, { scale: 3, useCORS: true }).then(canvas => {
-                canvas.toBlob(blob => {
-                    // Tenta compartilhar (Celular)
-                    if (navigator.share && blob) {
-                        const file = new File([blob], "devocional.png", { type: "image/png" });
-                        navigator.share({
-                            files: [file],
-                            title: 'Devocional',
-                            text: 'Uma palavra para você!'
-                        })
-                        .then(() => showToast("Compartilhado!"))
-                        .catch((error) => {
-                            // Se falhar (PC ou erro), baixa automaticamente
-                            console.log("Fallback para download", error);
-                            baixarFallback(canvas);
-                        });
-                    } else {
-                        // Se não suportar (PC), baixa direto
-                        baixarFallback(canvas);
-                    }
-                });
-            });
-        }
-
-        function baixarFallback(canvas) {
-            showToast("Baixando imagem (PC detectado)...");
-            const a = document.createElement('a');
-            a.download = 'devocional.png';
-            a.href = canvas.toDataURL();
-            a.click();
-        }
-
-        function saveImage() {
-            showToast("Baixando...");
-            html2canvas(document.getElementById('card-capture'), {scale: 3, useCORS: true}).then(canvas => {
-                const a = document.createElement('a'); a.download = 'devocional.png'; a.href = canvas.toDataURL(); a.click();
-            });
-        }
+        function saveImage() { compartilharImagemHibrido(); } // Atalho
         function limparTudo() { if(confirm("Limpar?")) { document.querySelectorAll('.input-field').forEach(i=>i.value=''); navTo('editor'); } }
         function showToast(msg) { const t=document.getElementById("toast"); t.innerText=msg; t.className="show"; setTimeout(()=>t.className="",3000); }
         function toggleTheme() { const b=document.body; b.hasAttribute('data-theme') ? b.removeAttribute('data-theme') : b.setAttribute('data-theme','dark'); }

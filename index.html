@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#e11d48">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Sistema Vida 28.1 - Tactile Fixed</title>
+    <title>Sistema Vida 31.1 - Clean Edition</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Lora:ital,wght@0,400;1,400&family=Dancing+Script:wght@600&family=Montserrat:wght@400;700&family=Bebas+Neue&family=Permanent+Marker&display=swap" rel="stylesheet">
@@ -87,7 +87,7 @@
         .emoji-item:hover { background: var(--input-bg); transform: scale(1.2); }
 
         .form-group { margin-bottom: 20px; }
-        label { display: block; font-size: 0.75rem; font-weight: 700; margin-bottom: 8px; color: var(--text-sec); text-transform: uppercase; letter-spacing: 0.5px; }
+        label { display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; font-weight: 700; margin-bottom: 8px; color: var(--text-sec); text-transform: uppercase; letter-spacing: 0.5px; }
         input, textarea { width: 100%; padding: 16px; border-radius: 18px; border: 1px solid var(--border); background: var(--input-bg); color: var(--text-main); font-size: 1rem; outline: none; transition: 0.3s; font-family: inherit; }
         input:focus, textarea:focus { border-color: var(--primary); background: var(--bg-card); }
 
@@ -122,6 +122,18 @@
             transform-style: preserve-3d;
         }
 
+        /* FRAMES (MOLDURAS) - V31 */
+        .frame-white { border: 12px solid #ffffff; }
+        .frame-black { border: 12px solid #1e293b; }
+        .frame-gold { border: 12px solid #d4af37; box-shadow: inset 0 0 20px rgba(184, 134, 11, 0.5); }
+        .frame-wood { border: 15px solid #8b4513; border-radius: 4px !important; }
+        .frame-neon-pink { border: 4px solid #ff00ff; box-shadow: 0 0 15px #ff00ff, inset 0 0 15px #ff00ff; }
+        .frame-neon-blue { border: 4px solid #00ffff; box-shadow: 0 0 15px #00ffff, inset 0 0 15px #00ffff; }
+        .frame-double { border: 8px solid white; outline: 4px solid rgba(0,0,0,0.1); outline-offset: -14px; }
+        .frame-modern-y { border-top: 20px solid var(--primary); border-bottom: 20px solid var(--primary); }
+        .frame-modern-x { border-left: 20px solid var(--primary); border-right: 20px solid var(--primary); }
+        .frame-polaroid-clean { border: 15px solid white; border-bottom-width: 50px; border-radius: 2px !important; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
         /* DRAGGABLE ITEMS (V28) */
         .draggable-item {
             cursor: grab;
@@ -139,7 +151,7 @@
 
         /* FORMATOS BAR */
         .format-bar { 
-            display: flex; gap: 8px; justify-content: center; margin-bottom: 25px; 
+            display: flex; gap: 8px; justify-content: center; margin-bottom: 15px; 
             background: var(--bg-card); padding: 6px; border-radius: 20px; border: 1px solid var(--border);
             box-shadow: var(--shadow);
         }
@@ -285,7 +297,7 @@
     <div id="particles"></div>
 
     <header>
-        <div class="brand"><span>Sistema Vida</span><span>Tactile Fixed 28.1</span></div>
+        <div class="brand"><span>Sistema Vida</span><span>Clean 31.1</span></div>
         <div class="streak-badge" id="streakCounter" onclick="showStreakInfo()"><i class="fas fa-fire"></i> <span>1</span> Dia</div>
     </header>
 
@@ -379,6 +391,22 @@
                 <div class="fmt-btn" onclick="setFormat('fmt-story', this)"><i class="fas fa-mobile-alt"></i> Stories</div>
             </div>
 
+            <!-- MOLDURAS (V31) -->
+            <div class="section-title" style="margin-left: 5px; margin-bottom: 10px; font-size: 0.75rem; font-weight: 700; color: var(--text-sec); text-transform: uppercase;">Molduras</div>
+            <div class="preview-controls" style="padding-top: 0; margin-bottom: 20px;">
+                <button class="tool-btn active" onclick="setFrame('')">🚫</button>
+                <button class="tool-btn" onclick="setFrame('frame-white')">⬜ Simples</button>
+                <button class="tool-btn" onclick="setFrame('frame-double')">回 Dupla</button>
+                <button class="tool-btn" onclick="setFrame('frame-black')">⬛ Black</button>
+                <button class="tool-btn" onclick="setFrame('frame-gold')">👑 Gold</button>
+                <button class="tool-btn" onclick="setFrame('frame-wood')">🪵 Madeira</button>
+                <button class="tool-btn" onclick="setFrame('frame-neon-pink')">🔮 Neon P</button>
+                <button class="tool-btn" onclick="setFrame('frame-neon-blue')">💠 Neon A</button>
+                <button class="tool-btn" onclick="setFrame('frame-modern-y')">⬆️ Top/Bot</button>
+                <button class="tool-btn" onclick="setFrame('frame-modern-x')">⬅️ Lft/Rgt</button>
+                <button class="tool-btn" onclick="setFrame('frame-polaroid-clean')">📸 Pola</button>
+            </div>
+
             <div class="scroll-tools">
                 <div class="tool-row">
                     <button class="tool-btn active" onclick="setSticker('', this)"><i class="fas fa-ban"></i></button>
@@ -391,7 +419,7 @@
 
                 <div class="tool-row">
                     <button class="tool-btn" onclick="toggleFont()"><i class="fas fa-font"></i> Fonte</button>
-                    <button class="tool-btn" onclick="resetPositions()"><i class="fas fa-sync-alt"></i> Reset</button> <!-- NEW -->
+                    <button class="tool-btn" onclick="resetPositions()"><i class="fas fa-sync-alt"></i> Reset</button>
                     <button class="tool-btn" onclick="toggleTypewriter()"><i class="fas fa-keyboard"></i> Digitar</button> 
                     <button class="tool-btn" onclick="toggleAlign()"><i class="fas fa-align-center"></i> Alinhar</button>
                     <button class="tool-btn" onclick="toggleDim()"><i class="fas fa-adjust"></i> Sombra</button>
@@ -405,7 +433,6 @@
                 </button>
                 <input type="file" id="bgInput" accept="image/*" style="display:none" onchange="carregarFoto(event)">
 
-                <!-- NOVO: BOTÃO MÁGICO -->
                 <button class="theme-btn magic-btn" onclick="magicBackground()">
                     <i class="fas fa-wand-magic-sparkles"></i>
                 </button>
@@ -415,7 +442,6 @@
                 <div class="theme-btn t-ocean" onclick="setTheme('t-ocean', this)"></div>
                 <div class="theme-btn t-nature" onclick="setTheme('t-nature', this)"></div>
                 <div class="theme-btn t-sunset" onclick="setTheme('t-sunset', this)"></div>
-                <!-- VIP THEMES -->
                 <div class="theme-btn t-gold locked" onclick="setTheme('t-gold', this)" data-vip="true"></div>
                 <div class="theme-btn t-royal locked" onclick="setTheme('t-royal', this)" data-vip="true"></div>
             </div>
@@ -440,44 +466,36 @@
 
     <script>
         const db = [
-            // Financeiro / Sucesso
             { tags: "financeiro dinheiro sucesso", titulo: "Deus Proverá", ref: "Filipenses 4:19", vers: "O meu Deus suprirá todas as necessidades.", msg: "Sua conta bancária não limita o poder de Deus. A provisão está a caminho." },
             { tags: "sucesso trabalho foco", titulo: "Não Desista", ref: "Gálatas 6:9", vers: "Não nos cansemos de fazer o bem.", msg: "O sucesso é a soma de pequenos esforços repetidos dia após dia. Continue plantando." },
             { tags: "sucesso empreender", titulo: "Visão de Águia", ref: "", vers: "O futuro pertence àqueles que acreditam na beleza de seus sonhos.", msg: "Não conte seus planos para quem não tem visão para entendê-los. Trabalhe em silêncio." },
-            
-            // Ansiedade / Paz
             { tags: "ansiedade medo paz", titulo: "Paz Real", ref: "João 14:27", vers: "Deixo-vos a paz, a minha paz vos dou.", msg: "Respire fundo. O controle do universo está nas mãos de quem te ama." },
             { tags: "ansiedade calma", titulo: "Um dia de cada vez", ref: "Mateus 6:34", vers: "Não vos inquieteis pelo dia de amanhã.", msg: "A preocupação não tira os problemas de amanhã, ela apenas tira a paz de hoje." },
-            
-            // Família
             { tags: "família casa amor", titulo: "Lar Protegido", ref: "Josué 24:15", vers: "Eu e minha casa serviremos ao Senhor.", msg: "Deus está levantando muros de proteção ao redor da sua família hoje." },
-            
-            // Saúde / Gym
             { tags: "saúde cura gym treino", titulo: "Força Renovada", ref: "Isaías 40:29", vers: "Ele fortalece o cansado e dá grande vigor ao que está sem forças.", msg: "Seu corpo é templo. Cuide dele com respeito e disciplina. Você é mais forte do que imagina." },
             { tags: "saúde cura", titulo: "Cura Divina", ref: "Jeremias 30:17", vers: "Restaurarei a sua saúde e curarei as suas feridas.", msg: "Para Deus, o diagnóstico médico é apenas um detalhe. Creia no milagre." },
-            
-            // Fé / Gratidão
             { tags: "gratidão fé", titulo: "Novo Fôlego", ref: "Lamentações 3:22", vers: "As misericórdias do Senhor são a causa de não sermos consumidos.", msg: "Você acordou! Isso é a prova de que Deus ainda não terminou com você." },
             { tags: "fé milagre", titulo: "Vai Acontecer", ref: "Hebreus 11:1", vers: "A fé é a certeza daquilo que esperamos.", msg: "O que parece impossível para você, para Deus é apenas o começo de um milagre." }
         ];
 
         const magicBackgrounds = [
-            "https://images.unsplash.com/photo-1519681393798-3828fb4090bb?q=80&w=1000", // Sky
-            "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1000", // Nature
-            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000", // Landscape
-            "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=1000", // Mountain
-            "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=1000", // Green
-            "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000", // Beach
-            "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?q=80&w=1000", // Space
-            "https://images.unsplash.com/photo-1506260408121-e353d10b87c7?q=80&w=1000", // Sunset
-            "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1000", // Mountains Dark
-            "https://images.unsplash.com/photo-1500673922987-e212871fec22?q=80&w=1000"  // Stars
+            "https://images.unsplash.com/photo-1519681393798-3828fb4090bb?q=80&w=1000",
+            "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1000",
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000",
+            "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=1000",
+            "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=1000",
+            "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000",
+            "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?q=80&w=1000",
+            "https://images.unsplash.com/photo-1506260408121-e353d10b87c7?q=80&w=1000",
+            "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1000",
+            "https://images.unsplash.com/photo-1500673922987-e212871fec22?q=80&w=1000"
         ];
 
         const emojis = ["🙏", "🙌", "✨", "❤️", "✝️", "🕊️", "📖", "🔥", "💡", "😊", "💪", "🛡️", "👑", "🌿", "🌟", "💖", "🤝", "😭", "🌻", "😇", "🦁", "🌈", "☀️", "🚀", "💰", "💼", "🧠"];
         let lastInput = null;
         let userStreak = 0;
         let typeWriterActive = true; 
+        let currentFrame = '';
 
         window.onload = function() {
             checkStreak();
@@ -490,11 +508,26 @@
             gerarConteudo();
             
             init3DTilt();
-            initDraggable(); // V28
-            initPinchZoom(); // V28
+            initDraggable(); 
+            initPinchZoom(); 
         };
 
-        // --- DRAG SYSTEM (V28) ---
+        // --- FRAMES SYSTEM (V31) ---
+        function setFrame(frameClass) {
+            const card = document.getElementById('card-capture');
+            
+            // Remove previous frame classes
+            const classesToRemove = ['frame-white', 'frame-black', 'frame-gold', 'frame-wood', 'frame-neon-pink', 'frame-neon-blue', 'frame-double', 'frame-modern-y', 'frame-modern-x', 'frame-polaroid-clean'];
+            card.classList.remove(...classesToRemove);
+            
+            if(frameClass) {
+                card.classList.add(frameClass);
+            }
+            currentFrame = frameClass;
+            showToast("Moldura Aplicada! 🖼️");
+        }
+
+        // --- DRAG SYSTEM ---
         function initDraggable() {
             const draggables = document.querySelectorAll('.draggable-item');
             draggables.forEach(el => makeDraggable(el));
@@ -524,6 +557,7 @@
                 const translate = getTranslate(el);
                 initialTranslateX = translate.x;
                 initialTranslateY = translate.y;
+                
                 el.style.transition = 'none'; 
             };
 
@@ -550,7 +584,7 @@
             window.addEventListener('touchend', end);
         }
 
-        // --- PINCH ZOOM SYSTEM (V28) ---
+        // --- PINCH ZOOM SYSTEM ---
         function initPinchZoom() {
             const container = document.getElementById('card-capture');
             let initialDist = 0;
@@ -592,7 +626,6 @@
             showToast("Posições Restauradas 🔄");
         }
 
-        // --- PARTICLES (V25) ---
         function createParticles() {
             const container = document.getElementById('particles');
             const particleCount = 20;
@@ -609,7 +642,6 @@
             }
         }
 
-        // --- TYPEWRITER (V25) ---
         function runTypewriter(text) {
             const el = document.getElementById('pv-msg');
             el.innerHTML = ''; 
@@ -637,7 +669,6 @@
             updatePreview(); 
         }
 
-        // --- EFEITO 3D TILT (V24) ---
         function init3DTilt() {
             const container = document.getElementById('card-container-3d');
             const card = document.getElementById('card-capture');
@@ -658,7 +689,6 @@
             });
         }
 
-        // --- SISTEMA VIP & STREAK (V21) ---
         function checkStreak() {
             let last = localStorage.getItem('lastVisit');
             userStreak = parseInt(localStorage.getItem('streak') || 0);
@@ -681,7 +711,6 @@
             else { const faltam = 3 - userStreak; showToast(`🔒 Faltam ${faltam} dias para liberar temas!`); }
         }
 
-        // --- FUNÇÕES DE VISUAL ---
         function ajustarFonte(val) { document.querySelector('.card-content-layer').style.fontSize = val + 'px'; }
         function ajustarOpacidade(val) { document.getElementById('pv-msg').style.backgroundColor = `rgba(255,255,255, ${val / 100})`; }
         
@@ -724,6 +753,10 @@
             const currentClasses = Array.from(card.classList);
             currentClasses.forEach(cls => { if(cls.startsWith('t-')) card.classList.remove(cls); });
             card.classList.add(themeClass); card.style.backgroundImage = '';
+            
+            // Reapply frame if exists
+            if(currentFrame) card.classList.add(currentFrame);
+
             card.classList.remove('filter-bw', 'filter-sepia', 'filter-vintage', 'filter-vivid');
             document.getElementById('overlay-dim').className = 'card-overlay'; 
             document.getElementById('overlay-dim').style.backdropFilter = 'none'; // Reset blur
@@ -740,6 +773,7 @@
             const currentClasses = Array.from(card.classList);
             currentClasses.forEach(cls => { if(cls.startsWith('t-')) card.classList.remove(cls); });
             card.classList.add('t-dark');
+            if(currentFrame) card.classList.add(currentFrame);
             document.getElementById('overlay-dim').className = 'card-overlay dimmer-heavy';
             const msg = document.getElementById('mensagem');
             if(msg.value && !msg.value.includes('✨')) { msg.value += " ✨"; updatePreview(); }
@@ -759,7 +793,6 @@
 
             const synth = window.speechSynthesis;
             
-            // Se estiver falando, para.
             if (synth.speaking) {
                 synth.cancel();
                 showToast("🔇 Áudio parado.");
@@ -781,7 +814,6 @@
             utter.rate = 0.9;
             utter.pitch = 1;
 
-            // Tentar selecionar uma voz em PT-BR específica se disponível
             const voices = synth.getVoices();
             const brVoice = voices.find(v => v.lang.includes('pt-BR') || v.lang.includes('pt_BR'));
             if (brVoice) utter.voice = brVoice;
@@ -812,6 +844,7 @@
                     const currentClasses = Array.from(card.classList);
                     currentClasses.forEach(cls => { if(cls.startsWith('t-')) card.classList.remove(cls); });
                     card.classList.add('t-dark');
+                    if(currentFrame) card.classList.add(currentFrame);
                     document.getElementById('overlay-dim').className = 'card-overlay dimmer-heavy';
                     showToast("Foto Carregada! 📸");
                 }
@@ -911,13 +944,19 @@
                         } catch (err) { baixarLink(canvas); }
                     }
                 });
-            } catch (error) { baixar(); }
+            } catch (error) { 
+                baixar(); 
+            }
         }
         function baixar() {
             const card = document.getElementById('card-capture'); 
+            
             card.style.transform = 'none'; 
+
             showToast("Salvando...");
-            html2canvas(card, { scale: 3, useCORS: true, allowTaint: true, backgroundColor: null }).then(canvas => { baixarLink(canvas); }).catch(e => { alert("Erro ao baixar."); });
+            html2canvas(card, { scale: 3, useCORS: true, allowTaint: true, backgroundColor: null }).then(canvas => { 
+                baixarLink(canvas); 
+            }).catch(e => { alert("Erro ao baixar."); });
         }
         function baixarLink(canvas) {
             const link = document.createElement('a'); link.download = 'sistema_vida_' + Date.now() + '.png'; link.href = canvas.toDataURL(); link.click(); showToast("Salvo na Galeria! 📥");
